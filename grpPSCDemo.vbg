@@ -1,0 +1,4 @@
+VBGROUP 5.0
+StartupProject=ClientInterFace\jxDBClientPSC.vbp
+Project=prjRpt\prjJxDBreportPSC.vbp
+Project=..\submittedJxDBReport\prjRpt\softbutton\ExtendedButton\Softbttn.vbp
