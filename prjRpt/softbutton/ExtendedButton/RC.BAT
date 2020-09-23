@@ -1,0 +1,1 @@
+rc.exe /foSoftBttn.res SoftBttn.rc

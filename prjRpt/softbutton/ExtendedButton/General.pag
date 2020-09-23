@@ -1,0 +1,263 @@
+VERSION 5.00
+Begin VB.PropertyPage General 
+   Caption         =   "General"
+   ClientHeight    =   3495
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5925
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3495
+   ScaleWidth      =   5925
+   Begin VB.TextBox txtToolTipText 
+      Height          =   330
+      Left            =   3135
+      TabIndex        =   17
+      Top             =   2940
+      Width           =   2700
+   End
+   Begin VB.TextBox txtURLPicture 
+      Height          =   330
+      Left            =   3135
+      TabIndex        =   15
+      Top             =   2100
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkUseMaskColor 
+      Caption         =   "UseMaskColor"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   13
+      Top             =   1420
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkShrinkIcon 
+      Caption         =   "ShrinkIcon"
+      Height          =   285
+      Left            =   3225
+      TabIndex        =   4
+      Top             =   195
+      Width           =   1065
+   End
+   Begin VB.Frame Frame1 
+      Height          =   1155
+      Left            =   3135
+      TabIndex        =   8
+      Top             =   240
+      Width           =   2700
+      Begin VB.TextBox txtIconHeight 
+         Height          =   330
+         Left            =   1140
+         TabIndex        =   10
+         Top             =   690
+         Width           =   1395
+      End
+      Begin VB.TextBox txtIconWidth 
+         Height          =   330
+         Left            =   1140
+         TabIndex        =   9
+         Top             =   315
+         Width           =   1395
+      End
+      Begin VB.Label lblIconHeight 
+         AutoSize        =   -1  'True
+         Caption         =   "IconHeight:"
+         Height          =   195
+         Left            =   135
+         TabIndex        =   12
+         Top             =   735
+         Width           =   825
+      End
+      Begin VB.Label lblIconWidth 
+         AutoSize        =   -1  'True
+         Caption         =   "IconWidth:"
+         Height          =   195
+         Left            =   135
+         TabIndex        =   11
+         Top             =   360
+         Width           =   780
+      End
+   End
+   Begin VB.CheckBox chkPopUpButton 
+      Caption         =   "PopUpButton"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   7
+      Top             =   986
+      Width           =   2700
+   End
+   Begin VB.TextBox txtHotKey 
+      Height          =   330
+      Left            =   90
+      MaxLength       =   1
+      TabIndex        =   6
+      Top             =   2940
+      Width           =   2700
+   End
+   Begin VB.TextBox txtCaption 
+      Height          =   330
+      Left            =   90
+      TabIndex        =   3
+      Top             =   2100
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkEnabled 
+      Caption         =   "Enabled"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   1
+      Top             =   553
+      Width           =   2700
+   End
+   Begin VB.CheckBox chkPlaySounds 
+      Caption         =   "PlaySounds"
+      Height          =   285
+      Left            =   90
+      TabIndex        =   0
+      Top             =   120
+      Width           =   2700
+   End
+   Begin VB.Label lblToolTipText 
+      Caption         =   "ToolTipText:"
+      Height          =   240
+      Left            =   3135
+      TabIndex        =   16
+      Top             =   2655
+      Width           =   2700
+   End
+   Begin VB.Label lblURLPicture 
+      Caption         =   "URLPicture:"
+      Height          =   240
+      Left            =   3135
+      TabIndex        =   14
+      Top             =   1845
+      Width           =   2700
+   End
+   Begin VB.Label lblHotKey 
+      Caption         =   "HotKey:"
+      Height          =   240
+      Left            =   90
+      TabIndex        =   5
+      Top             =   2655
+      Width           =   2700
+   End
+   Begin VB.Label lblCaption 
+      Caption         =   "Caption:"
+      Height          =   240
+      Left            =   90
+      TabIndex        =   2
+      Top             =   1845
+      Width           =   2700
+   End
+End
+Attribute VB_Name = "General"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+Private Sub txtToolTipText_Change()
+    Changed = True
+End Sub
+
+
+Private Sub txtURLPicture_Change()
+    Changed = True
+End Sub
+
+
+Private Sub chkUseMaskColor_Click()
+    Changed = True
+End Sub
+
+
+Private Sub chkPopUpButton_Click()
+    Changed = True
+End Sub
+
+
+Private Sub txtHotKey_Change()
+    Changed = True
+End Sub
+
+
+Private Sub txtIconHeight_KeyPress(KeyAscii As Integer)
+If IsNumeric(Chr(KeyAscii)) Then
+Else
+KeyAscii = 0
+End If
+
+End Sub
+
+Private Sub txtIconWidth_Change()
+    
+    Changed = True
+End Sub
+
+
+Private Sub txtIconHeight_Change()
+    Changed = True
+End Sub
+
+
+Private Sub chkShrinkIcon_Click()
+If chkShrinkIcon.Value = vbChecked Then
+Frame1.Enabled = True
+Else
+Frame1.Enabled = False
+End If
+Changed = True
+End Sub
+
+
+Private Sub txtCaption_Change()
+    Changed = True
+End Sub
+
+
+Private Sub chkEnabled_Click()
+    Changed = True
+End Sub
+
+
+Private Sub chkPlaySounds_Click()
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).ToolTipText = txtToolTipText.Text
+    SelectedControls(0).URLPicture = txtURLPicture.Text
+    SelectedControls(0).UseMaskColor = (chkUseMaskColor.Value = vbChecked)
+    SelectedControls(0).PopUpButton = (chkPopUpButton.Value = vbChecked)
+    SelectedControls(0).HotKey = txtHotKey.Text
+    SelectedControls(0).IconWidth = txtIconWidth.Text
+    SelectedControls(0).IconHeight = txtIconHeight.Text
+    SelectedControls(0).ShrinkIcon = (chkShrinkIcon.Value = vbChecked)
+    SelectedControls(0).Caption = txtCaption.Text
+    SelectedControls(0).Enabled = (chkEnabled.Value = vbChecked)
+    SelectedControls(0).PlaySounds = (chkPlaySounds.Value = vbChecked)
+End Sub
+
+
+
+Private Sub PropertyPage_SelectionChanged()
+    txtToolTipText.Text = SelectedControls(0).ToolTipText
+    txtURLPicture.Text = SelectedControls(0).URLPicture
+    chkUseMaskColor.Value = (SelectedControls(0).UseMaskColor And vbChecked)
+    chkPopUpButton.Value = (SelectedControls(0).PopUpButton And vbChecked)
+    txtHotKey.Text = SelectedControls(0).HotKey
+    txtIconWidth.Text = SelectedControls(0).IconWidth
+    txtIconHeight.Text = SelectedControls(0).IconHeight
+    chkShrinkIcon.Value = (SelectedControls(0).ShrinkIcon And vbChecked)
+    txtCaption.Text = SelectedControls(0).Caption
+    chkEnabled.Value = (SelectedControls(0).Enabled And vbChecked)
+    chkPlaySounds.Value = (SelectedControls(0).PlaySounds And vbChecked)
+End Sub
+
+
+Private Sub txtIconWidth_KeyPress(KeyAscii As Integer)
+If IsNumeric(Chr(KeyAscii)) Then
+Else
+KeyAscii = 0
+End If
+End Sub
